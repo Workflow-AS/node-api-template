@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import bodyParser from "body-parser";
 import "./config/env";
 import { DBConnection } from "./config/database";
 import { routes } from "./routes";
@@ -6,6 +7,7 @@ import { routes } from "./routes";
 const app: Express = express();
 const port = process.env.PORT;
 
+app.use(bodyParser.json());
 app.use("/v1", routes);
 
 const start = async (): Promise<void> => {
